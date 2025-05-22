@@ -34,7 +34,7 @@ public class Paciente extends Persona implements Notificable {
 
     public void solicitudCita(Cita cita) {
         citas.add(cita);
-        notificar("Cita solicitada para el " + cita.getFecha() + " a las " + cita.getHora());
+        notificar("Cita solicitada para el " + cita.getFecha() + " a las " + cita.getHora()+ "idCita: "+citas.size());
     }
 
 

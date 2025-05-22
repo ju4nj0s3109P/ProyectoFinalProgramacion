@@ -6,19 +6,24 @@ import org.junit.jupiter.api.Test;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AdministradorTest {
-
+    private Hospital hospital;
     private Administrador admin;
     private Medico medico;
     private Paciente paciente;
 
     @BeforeEach
     public void setUp() {
-        admin = new Administrador("a1", "Admin", "3101234567");
+        List<Paciente> pacientes = new ArrayList<>();
+        List<Medico> medicos = new ArrayList<>();
+        List<Administrador> administradores = new ArrayList<>();
+        hospital = new Hospital("Hospital",medicos,pacientes,administradores);
+        admin = new Administrador("a1", "Admin", "3101234567", hospital);
         medico = new Medico("m1", "Dr. Luna", "3201112233", "med123", "General");
         paciente = new Paciente("p1", "Carlos", "3009876543", 40);
     }
@@ -106,7 +111,7 @@ public class AdministradorTest {
         Horario horario = new Horario(LocalDate.now().getDayOfWeek(), LocalTime.of(8, 0), LocalTime.of(12, 0));
         medico.adminHorario(horario);
 
-        Cita cita = new Cita("c1", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(10, 0));
+        Cita cita = new Cita("c1", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(10, 0),paciente);
         paciente.solicitudCita(cita);
 
         admin.asignacionPacientes();
@@ -117,7 +122,7 @@ public class AdministradorTest {
     @Test
     public void testReporteCitas() {
         admin.registroPaciente(paciente);
-        Cita cita= new Cita("c5", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(9, 0));
+        Cita cita= new Cita("c5", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(9, 0),paciente);
         paciente.solicitudCita(cita);
 
         String reporte = admin.reporteCitas();

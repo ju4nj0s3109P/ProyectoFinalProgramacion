@@ -56,7 +56,7 @@ public class MedicoTest {
 
     @Test
     public void testAsignarCita() {
-        Cita cita = new Cita("c10", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(10, 0));
+        Cita cita = new Cita("c10", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(10, 0),paciente);
         medico.asignarCita(cita);
 
         assertTrue(medico.getCitasAsignadas().contains(cita));
@@ -64,8 +64,8 @@ public class MedicoTest {
 
     @Test
     public void testVerCitasPorFecha() {
-        Cita citaHoy = new Cita("c20", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(9, 0));
-        Cita citaOtroDia = new Cita("c21", EstadoCita.PENDIENTE, LocalDate.now().plusDays(1), LocalTime.of(10, 0));
+        Cita citaHoy = new Cita("c20", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(9, 0),paciente);
+        Cita citaOtroDia = new Cita("c21", EstadoCita.PENDIENTE, LocalDate.now().plusDays(1), LocalTime.of(10, 0),paciente);
 
         medico.asignarCita(citaHoy);
         medico.asignarCita(citaOtroDia);

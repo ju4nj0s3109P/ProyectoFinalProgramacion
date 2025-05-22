@@ -10,28 +10,38 @@ public class Administrador extends Persona {
     private List<Paciente> pacientes;
     private List<Horario> horarios;
     private List<Sala> salas;
+    private List<Administrador> administradores;
+    private Hospital hospital;
 
-    public Administrador(String id, String nombre, String telefono) {
+    public Administrador(String id, String nombre, String telefono, Hospital hospital) {
         super(id, nombre, telefono);
         this.medicos = new ArrayList<>();
         this.pacientes = new ArrayList<>();
         this.horarios = new ArrayList<>();
         this.salas = new ArrayList<>();
+        this.administradores = new ArrayList<>();
+        this.hospital = hospital;
     }
 
-    // Registrar paciente
+
+
     public void registroPaciente(Paciente paciente) {
         pacientes.add(paciente);
-        System.out.println("Paciente registrado: " + paciente.getNombre());
+
+    }
+    public void registroAdministrador(Administrador administrador) {
+        administradores.add(administrador);
+
     }
 
-    // Registrar médico
+
     public void registroMedico(Medico medico) {
         medicos.add(medico);
-        System.out.println("Médico registrado: " + medico.getNombre());
+
     }
 
-    // Actualizar paciente
+
+
         public boolean actualizacionPaciente(String id, String nuevoNombre, String nuevoTelefono, int nuevaEdad) {
             for (Paciente p : pacientes) {
                 if (p.getId().equals(id)) {
@@ -46,7 +56,7 @@ public class Administrador extends Persona {
             return false;
         }
 
-    // Actualizar médico
+
     public boolean actualizacionMedico(String id, String nuevoNombre, String nuevoTelefono, String nuevaEspecialidad) {
         for (Medico m : medicos) {
             if (m.getId().equals(id)) {
@@ -60,35 +70,35 @@ public class Administrador extends Persona {
     }
 
 
-    // Eliminación de Persona
+
     public boolean eliminacionPersona(String id) {
         return medicos.removeIf(m -> m.getId().equals(id)) ||
                 pacientes.removeIf(p -> p.getId().equals(id));
     }
 
-    // Gestión de salas (agregar o actualizar)
+
     public void gestionSala(Sala sala) {
         for (int i = 0; i < salas.size(); i++) {
             if (salas.get(i).numero() == sala.numero()) {
-                salas.set(i, sala); // reemplazar
+                salas.set(i, sala);
                 return;
             }
         }
         salas.add(sala);
     }
 
-    // Gestión de horario para un médico
+
     public void gestionHorario(Medico medico, Horario horario) {
         medico.getHorarios().add(horario);
         horarios.add(horario);
     }
 
-    // Verificar disponibilidad de médico en una fecha
+
     public boolean disponibilidadMedico(Medico medico, LocalDate fecha) {
         return medico.estaDisponibleEnFecha(fecha);
     }
 
-    // Asignación simple de pacientes a médicos según disponibilidad
+
     public void asignacionPacientes() {
         for (Paciente p : pacientes) {
             for (Cita c : p.getCitas()) {
@@ -104,7 +114,7 @@ public class Administrador extends Persona {
         }
     }
 
-    // Reporte de todas las citas
+
     public String reporteCitas() {
         String resultado = "Reporte de Citas:\n";
         for (Paciente p : pacientes) {
@@ -115,7 +125,7 @@ public class Administrador extends Persona {
         return resultado;
     }
 
-    // Reporte de ocupación de salas
+
     public String reporteOcupacion() {
         String resultado = "Reporte de Ocupación de Salas:\n";
         for (Sala s : salas) {
@@ -132,7 +142,7 @@ public class Administrador extends Persona {
         return todas;
     }
 
-    // Getters de las listas (opcional para pruebas o GUI)
+
     public List<Medico> getMedicos() {
         return medicos;
     }
@@ -149,6 +159,37 @@ public class Administrador extends Persona {
         return salas;
     }
 
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public void setHorarios(List<Horario> horarios) {
+        this.horarios = horarios;
+    }
+
+    public void setSalas(List<Sala> salas) {
+        this.salas = salas;
+    }
+
+    public List<Administrador> getAdministradores() {
+        return administradores;
+    }
+
+    public void setAdministradores(List<Administrador> administradores) {
+        this.administradores = administradores;
+    }
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 
     @Override
     public String mostrarRol() {

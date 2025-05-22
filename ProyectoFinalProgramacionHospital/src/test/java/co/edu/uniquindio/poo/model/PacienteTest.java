@@ -19,7 +19,7 @@ public class PacienteTest {
 
     @Test
     public void testSolicitudCita() {
-        Cita cita = new Cita("c1", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(10, 0));
+        Cita cita = new Cita("c1", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(10, 0),paciente);
         paciente.solicitudCita(cita);
 
         assertEquals(1, paciente.getCitas().size());
@@ -28,7 +28,7 @@ public class PacienteTest {
 
     @Test
     public void testCancelacionCitaExitosa() {
-        Cita cita = new Cita("c2", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(11, 0));
+        Cita cita = new Cita("c2", EstadoCita.PENDIENTE, LocalDate.now(), LocalTime.of(11, 0),paciente);
         paciente.solicitudCita(cita);
 
         boolean cancelada = paciente.cancelacionCita("c2");

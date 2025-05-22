@@ -9,12 +9,14 @@ public class Cita {
     private EstadoCita estado;
     private LocalDate fecha;
     private LocalTime hora;
+    private Paciente paciente;
 
-    public Cita(String idCita, EstadoCita estado, LocalDate fecha, LocalTime hora) {
+    public Cita(String idCita, EstadoCita estado, LocalDate fecha, LocalTime hora, Paciente paciente) {
         this.idCita = idCita;
         this.estado = estado;
         this.fecha = fecha;
         this.hora = hora;
+        this.paciente = paciente;
     }
 
 
@@ -49,5 +51,24 @@ public class Cita {
 
     public void setHora(LocalTime hora) {
         this.hora = hora;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+
+    @Override
+    public String toString() {
+        return "Cita{" +
+                "idCita='" + idCita + '\'' +
+                ", estado=" + estado +
+                ", fecha=" + fecha +
+                ", hora=" + hora +
+                ", paciente=" + paciente +
+                '}';
     }
 }

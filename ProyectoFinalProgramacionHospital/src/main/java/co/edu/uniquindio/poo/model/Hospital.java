@@ -9,6 +9,7 @@ public class Hospital {
     private List<Paciente> pacientes;
     private List<Administrador> administradores;
 
+
     public Hospital(String nombre, List<Medico> medicos, List<Paciente> pacientes, List<Administrador> administradores) {
         this.nombre = nombre;
         this.medicos = medicos;
@@ -16,14 +17,22 @@ public class Hospital {
         this.administradores = administradores;
     }
 
-    public boolean verificarAcceso(String id, String nombre) {
-        for (Persona p : getTodasLasPersonas()) {
-            if (p.getId().equals(id) && p.getNombre().equalsIgnoreCase(nombre)) {
-                return true;
-            }
-        }
-        return false;
+    public Persona verificarAcceso(String id, String nombre) {
+        for (Paciente p : pacientes)
+            if (p.getId().equals(id) && p.getNombre().equalsIgnoreCase(nombre))
+                return p;
+
+        for (Medico m : medicos)
+            if (m.getId().equals(id) && m.getNombre().equalsIgnoreCase(nombre))
+                return m;
+
+        for (Administrador a : administradores)
+            if (a.getId().equals(id) && a.getNombre().equalsIgnoreCase(nombre))
+                return a;
+
+        return null;
     }
+
 
     private List<Persona> getTodasLasPersonas() {
         List<Persona> todas = new java.util.ArrayList<>();
@@ -48,5 +57,21 @@ public class Hospital {
 
     public List<Administrador> getAdministradores() {
         return administradores;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setMedicos(List<Medico> medicos) {
+        this.medicos = medicos;
+    }
+
+    public void setPacientes(List<Paciente> pacientes) {
+        this.pacientes = pacientes;
+    }
+
+    public void setAdministradores(List<Administrador> administradores) {
+        this.administradores = administradores;
     }
 }

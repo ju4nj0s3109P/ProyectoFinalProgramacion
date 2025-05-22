@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="362.0" prefWidth="342.0" xmlns="http://javafx.com/javafx/17.0.6" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.controller.PacienteController">
+   <children>
+      <AnchorPane prefHeight="296.0" prefWidth="351.0">
+         <children>
+            <Label fx:id="lblNombrePaciente" layoutX="40.0" layoutY="35.0" text="Bienvenido: " />
+            <Button fx:id="btnSolicitarCita" layoutX="25.0" layoutY="96.0" mnemonicParsing="false" onAction="#solicitudCita" text="solicitar cita" />
+            <Button fx:id="btnCancelarCita" layoutX="134.0" layoutY="96.0" mnemonicParsing="false" onAction="#cancelacionCita" text="cancelar cita" />
+            <Button fx:id="btnVerHistorial" layoutX="246.0" layoutY="96.0" mnemonicParsing="false" onAction="#consultaHistorial" text="ver historial" />
+            <TextArea fx:id="txtMostrarHistorial" layoutX="5.0" layoutY="146.0" prefHeight="213.0" prefWidth="335.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

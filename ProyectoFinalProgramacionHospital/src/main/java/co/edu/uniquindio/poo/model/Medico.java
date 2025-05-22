@@ -21,7 +21,7 @@ public class Medico extends Persona implements Notificable {
         this.citasAsignadas = new ArrayList<>();
     }
 
-    // Métodos requeridos por el Administrador
+
 
     public List<Horario> getHorarios() {
         return horarios;
@@ -42,7 +42,7 @@ public class Medico extends Persona implements Notificable {
         return false;
     }
 
-    // Métodos específicos del médico
+
 
     public String historialPaciente(Paciente paciente) {
         return paciente.consultaHistorial();
